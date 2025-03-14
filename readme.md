@@ -1,10 +1,6 @@
 # **Student Metrics Data Pipeline**
 
-This project is an automated data pipeline built to assess and track student metrics using various AWS services. It extracts data from a CSV file uploaded to Amazon S3, processes and cleans the data using AWS Lambda, and loads the processed data into a PostgreSQL database. Finally, the data is visualized using Tableau for easier reporting and analysis.
-
-## **Overview**
-
-The goal of this project is to build a scalable and serverless data pipeline that allows a school district to collect, process, and analyze student performance data. The pipeline is designed to run on AWS using services such as Lambda, S3, Glue, and PostgreSQL, enabling automated data ingestion, transformation, and visualization.
+This project is an automated data pipeline built to assess and track student metrics using various AWS services. It extracts data from a CSV file uploaded to Amazon S3, processes and cleans the data using AWS Lambda, and loads the processed data into a PostgreSQL database via Glue. Finally, the data is visualized using Tableau for easier reporting and analysis.
 
 ## **Architecture**
 
@@ -58,58 +54,10 @@ The pipeline works as follows:
 * Visualizes the data stored in PostgreSQL for reporting purposes.  
 * Dashboards are created to help administrators, teachers, and other stakeholders analyze student performance and behavior.
 
-## **Setup Instructions**
-
-Follow the steps below to set up and run the project.
-
-### **Prerequisites**
-
-* An **AWS account** with access to the following services:  
-  * S3  
-  * Lambda  
-  * Glue  
-  * PostgreSQL (RDS or self-managed)  
-  * IAM roles with appropriate permissions  
-* **Tableau Desktop** or Tableau Server to visualize the data.  
-* A **PostgreSQL instance** for storing the student metrics data.
-
-### **1\. Create an S3 Bucket**
-
-* Create an S3 bucket to store the raw and cleaned student data CSV files.
-
-### **2\. Lambda Function**
-
-* Create a Lambda function in AWS.  
-* Set it to trigger on file uploads to the S3 bucket.  
-* Implement data cleaning logic in the Lambda function (e.g., handling missing data, reformatting columns).  
-* Reupload the cleaned data to a separate S3 location.
-
-### **3\. Glue Crawler**
-
-* Set up a Glue Crawler to scan the cleaned data in S3.  
-* The Crawler will automatically detect the schema and update the Glue Data Catalog.
-
-### **4\. Glue Job**
-
-* Create a Glue Job that:  
-  * Reads the cleaned data from S3.  
-  * Transforms the data if necessary.  
-  * Loads it into a PostgreSQL database.
-
-### **5\. PostgreSQL Database**
-
-* Set up a PostgreSQL database (either on RDS or on-premises).  
-* Create the necessary tables to store student metrics.  
-* Make sure the Glue job has the necessary permissions to insert data into the PostgreSQL database.
-
-### **6\. Connect Tableau**
-
-* Connect Tableau to the PostgreSQL database using the database connection details.  
-* Create dashboards and reports to visualize the student metrics.
-
 ## **Future Improvements**
 
-* **Schema Change Automation**: Currently, schema changes are managed manually. Automating this process through Glue jobs and database migrations is a potential enhancement.  
+* **Schema Change Automation**: Currently, schema changes are managed manually. Automating this process through Glue jobs and database migrations is a potential enhancement. 
 * **Data Validation**: Introduce more comprehensive data validation and error handling in the Lambda function.  
 * **Alerting**: Set up notifications or alarms for failed Lambda executions, Glue job failures, or other issues in the pipeline.  
 * **Security Enhancements**: Improve access controls and encryption for sensitive student data.
+* **S3 Storage Archive**: Improve the scalability of S3 as a data source/destination by implementing an archiving system.
