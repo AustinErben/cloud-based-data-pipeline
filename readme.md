@@ -4,7 +4,7 @@
 
 
 
-This project is an automated data pipeline built to assess and track student metrics using various AWS services. It extracts data from a CSV file uploaded to Amazon S3, processes and cleans the data using AWS Lambda, and loads the processed data into a PostgreSQL database via Glue. Finally, the data is visualized using Tableau for easier reporting and analysis.
+This project is an early-stage data pipeline built to assess and track student metrics using various AWS services. It extracts data from a CSV file uploaded to Amazon S3, processes and cleans the data using AWS Lambda, and loads the processed data into a PostgreSQL database via Glue. Finally, the data is visualized using Tableau for easier reporting and analysis.
 
 ## **Architecture**
 
