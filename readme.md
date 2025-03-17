@@ -58,10 +58,27 @@ The pipeline works as follows:
 * Visualizes the data stored in PostgreSQL for reporting purposes.  
 * Dashboards are created to help administrators, teachers, and other stakeholders analyze student performance and behavior.
 
-## **Future Improvements**
+## **Future Improvements and Considerations**
 
-* **Schema Change Automation**: Currently, schema changes are managed manually. Automating this process through Glue jobs and database migrations is a potential enhancement. 
-* **Data Validation**: Introduce more comprehensive data validation and error handling in the Lambda function.  
-* **Alerting**: Set up notifications or alarms for failed Lambda executions, Glue job failures, or other issues in the pipeline.  
-* **Security Enhancements**: Improve access controls and encryption for sensitive student data.
-* **S3 Storage Archive**: Improve the scalability of S3 as a data source/destination by implementing an archiving system.
+### **1\. Automation & Orchestration**  
+- Right now, much of the process is manual (triggering Glue and uploads manually).  
+- To fully automate it, could consider using: **AWS Step Functions** or **Apache Airflow** to orchestrate ETL jobs.  
+- **AWS EventBridge** to trigger Glue jobs on S3 file uploads.  
+
+### **2\. Schema Evolution & Data Quality**  
+- AWS Glue crawlers detect schema changes, but how should the pipeline handle them?  
+- Implement **AWS Deequ** (or similar) for data quality checks.  
+
+### **3\. Error Handling & Logging**  
+- If Glue or PostgreSQL fails, there could be a retry mechanism.  
+- Add **AWS CloudWatch logging** to capture errors & job execution details.  
+
+### **4\. Scalability & Performance**  
+- How would the pipeline handle large datasets?  
+- Consider **partitioning S3 data** and using **Parquet format** for efficiency.  
+
+### **5\. CI/CD & Infrastructure as Code**  
+- Right now, configurations in Glue are manually set up.  
+- Consider using **Terraform** or **AWS CloudFormation** to define **Infrastructure as Code (IaC)**.  
+- **CI/CD Pipeline:** Can set up a **GitHub Actions** pipeline to deploy changes to AWS.  
+
