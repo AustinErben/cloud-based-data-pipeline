@@ -1,6 +1,6 @@
 # **Student Metrics Data Pipeline**
 
-**Video Demonstration** - [LINK]([https://example.com](https://www.youtube.com/watch?v=saI54lyJnes))
+**Video Demonstration** - [LINK](https://www.youtube.com/watch?v=saI54lyJnes)
 
 
 
